@@ -2,8 +2,8 @@ var helper = require('./helper'),
     assert = helper.assert,
     debug = helper.debug;
 
-var Serializer = require('..'),
-    serializer = new Serializer();
+var Compressor = require('..'),
+    compressor = new Compressor();
 
 // -----------------------
 //  Test
@@ -11,97 +11,97 @@ var Serializer = require('..'),
 
 module.exports = {
 
-  'Serializer': {
+  'Compressor': {
     'new': {
       '()': function() {
-        assert.instanceOf ( serializer, require('..') );
+        assert.instanceOf ( compressor, require('..') );
 
-        Serializer.reset();
+        Compressor.reset();
 
-        var serializer2 = new Serializer();
+        var compressor2 = new Compressor();
 
-        assert.typeOf ( serializer2.options, 'object' );
-        assert.deepEqual ( serializer2.options.custom, undefined );
+        assert.typeOf ( compressor2.options, 'object' );
+        assert.deepEqual ( compressor2.options.custom, undefined );
       },
 
       '(options)': function() {
-        Serializer.reset();
+        Compressor.reset();
 
-        var serializer2 = new Serializer({custom: {foo: 'bar'}});
+        var compressor2 = new Compressor({custom: {foo: 'bar'}});
 
-        assert.equal ( serializer2.url, null );
-        assert.typeOf ( serializer2.options, 'object' );
-        assert.deepEqual ( serializer2.options.custom, {foo: 'bar'} );
+        assert.equal ( compressor2.url, null );
+        assert.typeOf ( compressor2.options, 'object' );
+        assert.deepEqual ( compressor2.options.custom, {foo: 'bar'} );
       }
     },
 
     '.klass': function() {
-      assert.property ( serializer, 'klass' );
-      assert.equal ( serializer.klass, Serializer );
+      assert.property ( compressor, 'klass' );
+      assert.equal ( compressor.klass, Compressor );
     },
 
     '.name': function() {
-      assert.property ( Serializer, 'name' );
-      assert.equal ( Serializer.name, 'Serializer' );
+      assert.property ( Compressor, 'name' );
+      assert.equal ( Compressor.name, 'Compressor' );
     },
 
     '.defaults': function() {
-      assert.property ( Serializer, 'defaults' );
+      assert.property ( Compressor, 'defaults' );
 
-      assert.typeOf ( Serializer.defaults.options, 'object' );
+      assert.typeOf ( Compressor.defaults.options, 'object' );
     },
 
     '.options': function() {
-      assert.property ( Serializer, 'options' );
-      assert.typeOf ( Serializer.options, 'null' );
+      assert.property ( Compressor, 'options' );
+      assert.typeOf ( Compressor.options, 'null' );
     },
 
     '.reset()': function() {
-      assert.property ( Serializer, 'reset' );
-      assert.typeOf ( Serializer.reset, 'function' );
+      assert.property ( Compressor, 'reset' );
+      assert.typeOf ( Compressor.reset, 'function' );
 
-      Serializer.options = {foo: "bar"};
-      assert.deepEqual ( Serializer.options, {foo: "bar"} );
-      assert.deepEqual ( Serializer.defaults.options, {} );
+      Compressor.options = {foo: "bar"};
+      assert.deepEqual ( Compressor.options, {foo: "bar"} );
+      assert.deepEqual ( Compressor.defaults.options, {} );
 
-      Serializer.reset();
+      Compressor.reset();
 
-      assert.equal ( Serializer.options, Serializer.defaults.options );
+      assert.equal ( Compressor.options, Compressor.defaults.options );
     }
   },
 
-  'Serializer.prototype': {
+  'Compressor.prototype': {
     '.name': function() {
-      assert.property ( serializer, 'name' );
-      assert.equal ( serializer.name, 'Serializer' );
+      assert.property ( compressor, 'name' );
+      assert.equal ( compressor.name, 'Compressor' );
     },
 
     '#options': function() {
-      assert.property ( serializer, 'options' );
-      assert.typeOf ( serializer.options, 'object' );
+      assert.property ( compressor, 'options' );
+      assert.typeOf ( compressor.options, 'object' );
     },
 
     '#engine': function() {
-      assert.property ( serializer, 'engine' );
-      assert.typeOf ( serializer.engine, 'null' );
+      assert.property ( compressor, 'engine' );
+      assert.typeOf ( compressor.engine, 'null' );
     },
 
     '#binary': function() {
-      assert.property ( serializer, 'binary' );
-      assert.typeOf ( serializer.binary, 'boolean' );
-      assert.equal ( serializer.binary, false );
+      assert.property ( compressor, 'binary' );
+      assert.typeOf ( compressor.binary, 'boolean' );
+      assert.equal ( compressor.binary, false );
     },
 
-    '#serialize': function() {
-      assert.property ( serializer, 'serialize' );
-      assert.typeOf ( serializer.serialize, 'function' );
-      assert.throws ( serializer.serialize, Error );
+    '#compress': function() {
+      assert.property ( compressor, 'compress' );
+      assert.typeOf ( compressor.compress, 'function' );
+      assert.throws ( compressor.compress, Error );
     },
 
-    '#deserialize': function() {
-      assert.property ( serializer, 'deserialize' );
-      assert.typeOf ( serializer.deserialize, 'function' );
-      assert.throws ( serializer.deserialize, Error );
+    '#decompress': function() {
+      assert.property ( compressor, 'decompress' );
+      assert.typeOf ( compressor.decompress, 'function' );
+      assert.throws ( compressor.decompress, Error );
     }
   }
 
