@@ -1,6 +1,7 @@
 {
   "name": "node-document-compressor",
   "description": "Compressor adapter interface for `node-document` ODM for Node.js.",
+  "keywords": ["document", "odm", "object document mapper", "generic", "unified", "compressor", "compression", "adapter", "interface"],
   "version": "0.1.0-pre2",
   "homepage": "https://github.com/grimen/node-document-compressor",
   "repository": {
@@ -16,6 +17,7 @@
       "url": "https://github.com/grimen/node-document-compressor/blob/MIT-LICENSE"
     }
   ],
+  "author": "Jonas Grimfelt <grimen@gmail.com>",
   "maintainers": [
     {
       "name": "Jonas Grimfelt",
